@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" ng-app="barikoi" ng-cloak>
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Barikoi? | Admin</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Bootstrap core CSS     -->
+     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" data-semver="3.2.0" data-require="bootstrap-css@*" />
+
+    <!--  Material Dashboard CSS    -->
+    <link href="assets/css/material-dashboard.css" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+     <link href="assets/css/sweetalert.css" rel="stylesheet" />
+     <link href="assets/css/cellCursor.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/assets/css/so-multiselect.css" />
+
+    <!--  <link href="assets/css/handsontable.full.css" rel="stylesheet" /> -->
+     <!-- LeafLet, Marker Cluster Styles -->
+     <link data-require="leaflet@*" data-semver="1.0.3" rel="stylesheet" href="assets/css/leaflet.css" />
+      <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+	  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+	  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.0/leaflet.draw.css">
+
+	  <!-- Date -->
+	   <link href="assets/css/angularjs-datetime-picker.css" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+<!-- <link href="/assets/css/multiselect.css" rel="stylesheet" /> -->
+
+    <!--   Core JS Files   -->
+	<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/js/material.min.js" type="text/javascript"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/Chart.js"></script>
+
+	<!--  Notifications Plugin    -->
+
+	<!--  Google Maps Plugin    -->
+	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnzrdrI_6ATv3uyCGIRmWmJxVXJm_X1GQ&libraries=placeses,visualization,drawing,geometry,places"></script>
+
+	<!-- Material Dashboard javascript methods -->
+	<script src="assets/js/material-dashboard.js"></script>
+
+	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+	<script src="assets/js/perfect-scrollbar.jquery.min.js"></script>
+
+
+	<!-- ng files -->
+	<script src="assets/js/angular.min.js"></script>
+	<script src="assets/js/angular-ui-router.min.js"></script>
+	 <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.min.js" data-semver="0.10.0" data-require="angular-ui-bootstrap@0.10.0"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-messages.min.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
+	 <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.10/angular-material.js"></script>
+
+	<script src="assets/js/ngStorage.js" type="text/javascript"></script>
+	<script src="assets/js/sweetalert.min.js" type="text/javascript"></script>
+	<script src="assets/js/angular-table.min.js" type="text/javascript"></script>
+	<script src="assets/js/angular-chart.js" type="text/javascript"></script>
+	<script src="assets/js/angular-loading-overlay.js" type="text/javascript"></script>
+	<script src="assets/js/angular-pageslide-directive.js" type="text/javascript"></script>
+	<!--  -->
+	<script src="assets/js/autocomplete.js" type="text/javascript"></script>
+	<script src="assets/js/angularjs-datetime-picker.js"></script>
+	<script src="assets/js/angular-inview.js"></script>
+	<script src="assets/js/angular-image-compress.js"></script>
+	<script src="assets/js/cellCursor.js"></script>
+	<!-- OSM, Angular-LeafLet Directive -->
+	 <script src="assets/js/leaflet.js"></script>
+	 <script src="assets/js/Google.js"></script>
+	  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+	 <script src="https://cdn.rawgit.com/tombatossals/angular-leaflet-directive/d47897e0f784e8a6f12f3148fa6c92dd76abbb32/dist/angular-leaflet-directive.min.js"></script>
+	  <script src="assets/js/angular-leaflet-directive_dev_mapped.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.0/leaflet.draw.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.0/leaflet.draw-src.js"></script>
+	<script src="/assets/js/so-multiselect.js"></script>
+	<!-- <script src="assets/js/multiselect.js"></script> -->
+	<script src="/node_modules/leaflet-polylinedecorator/dist/leaflet.polylineDecorator.js"></script>
+
+	<script>
+	    	//Main Script.....................
+		    document.write("<script type='text/javascript' src='/assets/js/script.js?v=" + Date.now() + "'><\/script>");
+
+		    //Directives...............
+			document.write("<script type='text/javascript' src='/assets/js/directives/ng-anchor.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='/assets/js/directives/sidebar-init.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='/assets/js/directives/file-required.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='/assets/js/directives/float-btn.js?v=" + Date.now() + "'><\/script>");
+
+			//Controllers.....................
+			document.write("<script type='text/javascript' src='/assets/js/controllers/main.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src=assets/js/controllers/polygonStd-area.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='assets/js/controllers/polygon-area.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='assets/js/controllers/polygonStd-subarea.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='assets/js/controllers/polygon-subarea.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='assets/js/controllers/polygon-ward.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='assets/js/controllers/polygonStd-ward.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src=assets/js/controllers/polygonStd-zone.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='assets/js/controllers/polygon-zone.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='assets/js/controllers/polylineStd-road.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='assets/js/controllers/polyline-road.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='assets/js/controllers/polygon-modal.js?v=" + Date.now() + "'><\/script>");
+			
+			
+			//Services.............................
+			document.write("<script type='text/javascript' src='/assets/js/service/data-tunnel.js?v=" + Date.now() + "'><\/script>");
+			document.write("<script type='text/javascript' src='/assets/js/service/auth.js?v=" + Date.now() + "'><\/script>");
+			
+		</script>
+
+	<!-- <script src="assets/js/script.js"></script> -->
+
+	<!-- Custom Angular file -->
+
+	<!-- Directives............................-->
+	<!-- <script src="assets/js/directives/ng-anchor.js"></script>
+	<script src="assets/js/directives/sidebar-init.js"></script>
+	<script src="assets/js/directives/file-required.js"></script>
+	<script src="assets/js/directives/float-btn.js"></script>
+ -->
+	<!-- General Controller -->
+
+	<!-- <script src="assets/js/controllers/main.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygonStd-area.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygon-area.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygonStd-subarea.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygon-subarea.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygonStd-suparea.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygon-suparea.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygon-ward.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygonStd-ward.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygonStd-zone.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygon-zone.js"></script> -->
+	<!-- <script src="assets/js/controllers/polylineStd-road.js"></script> -->
+	<!-- <script src="assets/js/controllers/polyline-road.js"></script> -->
+	<!-- <script src="assets/js/controllers/polygon-modal.js"></script> -->
+
+
+	<!-- Pool............................................... -->
+
+
+
+	<!-- Service................................................. -->
+
+	<!-- <script src="assets/js/service/data-tunnel.js"></script>
+	<script src="assets/js/service/auth.js"></script> -->
+
+
+</head>
+
+<body>
+
+	<div class="wrapper">
+	   <div ui-view>
+
+	   </div>
+	</div>
+</body>
+
+
+
+</html>

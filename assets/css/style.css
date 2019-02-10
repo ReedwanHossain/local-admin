@@ -1,0 +1,63 @@
+.content_right_box {
+    background-color: #FFFFFF;
+    padding: 25px;
+    padding-bottom: 50px;
+    -webkit-box-shadow: 10px -5px 4px 0 rgba(0,0,0,0.3);
+    -moz-box-shadow: 10px -5px 4px 0 rgba(0,0,0,0.3);
+    box-shadow: 10px -5px 4px 0 rgba(0,0,0,0.3);
+}
+
+.content_center {
+    max-width: 900px;
+    height: calc(100% - 20px);
+    margin-top: 20px;
+}
+
+.content_box {
+    padding-top: 100px;
+    height: 100%;
+}
+.bold_title_small {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.pagigid > ul {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+
+}
+.pagigid > ul > li{
+    display: inline;
+    padding: 20px
+}
+/* Styles go here */
+
+.searchfield > ul{
+  width: 94%;
+  z-index: 2;
+}
+.searchfield > input{
+  border-bottom-right-radius: 3px !important;
+  border-top-right-radius: 3px !important;
+}
+
+.listItemHover {
+    border:1px solid #0000ff;
+    border-radius:8px;
+    padding: 2px 20px;
+    margin: 5px 0px;
+}
+
+.listItem {
+    border: 1px dotted #ccc;
+    border-radius: 8px;
+    padding: 2px 20px;
+    margin: 5px 0px;
+}
+
+.map-view {
+    height: -webkit-fill-available; width: 100%; position:relative; overflow:hidden;
+}

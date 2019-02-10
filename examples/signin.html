@@ -1,0 +1,47 @@
+<div ng-controller="MainController" style="width:100%;background-image: -webkit-linear-gradient(top,#123775 0,#1ed 100%);background-size: cover; height:100vh" ng-cloak>
+    <div class="content_box" id="context_box">
+    <div class="row" style="margin: auto;">
+      <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+        <div class="card card-signup">
+            <form class="form" ng-submit="signin()">
+                            <div class="header header-primary text-center">
+                                <h4 class="card-title">Log in</h4>
+                            </div>
+                          
+                            <div class="card-content">
+
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">email</i>
+                                    </span>
+                                    <div class="form-group is-empty"><input type="text" class="form-control" placeholder="Email..." ng-model="email"><span class="material-input"></span></div>
+                                </div>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="material-icons">lock_outline</i>
+                                    </span>
+                                    <div class="form-group is-empty"><input type="password" placeholder="Password..." class="form-control" ng-model="password"><span class="material-input"></span></div>
+                                </div>
+
+                                <div class="form-group">
+                                  <center> <button class="btn btn-info">Log-in<div class="ripple-container"><div class="ripple ripple-on" style="left: 58.125px; top: 19.8125px; transform: scale(14); background-color: rgb(255, 255, 255);"></div></div></button></center>
+                                </div>
+
+                                <!-- If you want to add a checkbox to this form, uncomment this code
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="optionsCheckboxes" checked>
+                                        Subscribe to newsletter
+                                    </label>
+                                </div> -->
+                            </div>
+                        </form>
+                         <p class="description text-center">Create An Account?  <a href="#/signup">Sign Up</a></p>
+                       
+  </div>
+        </div>
+    </div>
+</div>

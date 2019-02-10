@@ -1,0 +1,72 @@
+<!--  <div class="landing-page bs-loading-container"  bs-loading-overlay bs-loading-overlay-reference-id="first">
+       <style>
+        input {
+            width: 120px;
+            margin-right: 10px;
+        }
+    </style>
+          <leaflet class="map-view" center="center" controls="controls" layers="layers"></leaflet>    
+           
+</div>
+ -->
+
+  <div class="landing-page bs-loading-container" id="container1" bs-loading-overlay bs-loading-overlay-reference-id="first">
+      <pageslide ps-push="true" ps-open="toggle" ps-container="container1"  style="position: absolute; transition-duration: 0.5s;overflow-y:scroll; height: 100%; transition-property: top, bottom, left, right; width: 17em; top: 0px; bottom: 0px; right: -17em; background:white">
+                        <div style="padding:20px">
+                            <div>
+                               <label class="label">Area: </label>
+                                                         <select ng-model="area"  name="area"  ng-options="opt.area_name for opt in areas" ng-change="set_area(area)" class="form-control">
+                                                             </select>
+                                                      </div>
+
+                                                      <div>
+                               <label class="label">Road: </label>
+                                                         <select ng-model="road"  name="road"  ng-options="opt.road_name_number
+                                                         for opt in roads" ng-change="set_road(road)" class="form-control">
+                                                             </select>
+                                                      </div>
+                                                      
+                                                       
+                                                          
+                                                       
+
+                        </div>
+                    </pageslide>
+
+      <style>
+        input {
+            width: 120px;
+            margin-right: 10px;
+        }
+
+         .worldmap {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+        }
+
+
+        div.worldmap.country {
+            font-size: 2em;
+            font-weight: bold;
+            position: absolute;
+            bottom: 1em;
+            left: 1em;
+            z-index: 100;
+            padding: .2em .5em;
+            line-height: 1.1em;
+            text-align: center;
+        }
+    </style> 
+
+          <leaflet class="map-view" center="center" controls="controls" geojson="geojson" layers="layers" event-broadcast="events" >
+            <div class="worldmap country f32">
+        <div ng-show="selectedRoad" class="flag"></div>
+        {{ selectedRoad || 'No Name'}}
+      </div>
+      
+         <button class="btn btn-sm btn-danger btn-round" style="float:right;top: 4em;left: 3em;z-index:10;background:rgba(255,255,255,.15);" ng-click="openSlide()"><i class="material-icons" style="font-weight: bolder;color: black;padding-right: 1em;">
+          arrow_back_ios
+          </i></button>
+                             
+            </leaflet>              
+</div>
