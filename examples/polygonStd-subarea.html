@@ -19,11 +19,15 @@
                                                              </select>
                                                       </div> 
                                                       <label class="label">Subarea</label>
-
+<!-- 
                                                       <div>
                                                          <select ng-model="subarea"  name="subarea"  ng-options="opt.subarea_name for opt in subareas" ng-change="set_subarea(subarea)" class="form-control">
                                                              </select>
-                                                      </div>
+                                                      </div> -->
+
+                                                      <div so-multiselect items="subareas" name="Subarea" on-selected="onSelected('subarea', selectedItems)" button-class="btn-grey"></div>
+                                                          
+
                                                       
                                                         <!--  <div>
                                                          <select ng-model="subcategory"  name="subcategory"  ng-options="subcat.subtype for subcat in subcategories" ng-change="set_subType(area.name, subcategory.subtype)" class="form-control">

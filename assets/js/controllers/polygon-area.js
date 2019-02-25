@@ -14,11 +14,12 @@
            Auth.getlocations(urls.POLYGON_AREA, function(res) {
 
                     $scope.areas= [];
+                    $scope.areas.push({key: -1, name: 'clear', pgon: 'nai'});
                     res.map(function(res) {
                         var polyjson = res['ST_AsGeoJSON(area_area)'];
                         $scope.areas.push({key: res.id, name: res.area_name, pgon: polyjson})
                     });
-                    $scope.areas.push({key: -1, name: 'clear', pgon: 'nai'});
+                    //$scope.areas.push({key: -1, name: 'clear', pgon: 'nai'});
                     //console.log($scope.subcategories);
 
                  },
@@ -29,8 +30,8 @@
 
          $scope.onSelected = function(field, selectedItem) {
         console.log(selectedItem);
-        if (selectedItem[selectedItem.length-1].key < 0) {
-           selectedItem.map(function(area) {
+        if (selectedItem[0].key < 0) {
+           selectedItem.reverse().map(function(area) {
               area.selected = false;
            });
            angular.extend($scope, {
@@ -51,14 +52,14 @@
          var coordinates = [];
             var temp = [];
 
-        selectedItem.map(function(road,k) {   
+        selectedItem.reverse().map(function(road,k) {   
               var polyjson = JSON.parse(road.pgon);
               
               $scope.Feature.push({
                 "type": "Feature",
                 "properties": {
-                  "name": road.area_name,
-                  "ward_id" : road.ward_id
+                  "name": road.name,
+                  "key" : road.key
                 },
                 "geometry": {
                   "type": "Polygon",
@@ -86,6 +87,7 @@
                       "features": $scope.Feature
                     },
                     style: style,
+                    onEachFeature: onEachFeature
                 },
 
 
@@ -230,6 +232,26 @@ function getColor() {
     //return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
 
             }
+
+
+function whenClicked(e) {
+  // e = event
+  console.log(e.target.feature.properties.key)
+  swal(e.target.feature.properties.name, '')
+  $scope.id = e.target.feature.properties.key;
+  // toaster.pop('success', e.target.feature.properties.name);
+  // You can make your ajax call declaration here
+  //$.ajax(... 
+}
+
+
+function onEachFeature(feature, layer) {
+    //bind click
+    layer.on({
+        click: whenClicked
+    });
+}
+
 
 
 

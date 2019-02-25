@@ -6,8 +6,7 @@
                                                       
                                                       <div>
                                <label class="label">Zone: </label>
-                                                         <select ng-model="zone"  name="zone"  ng-options="opt.id for opt in zones" ng-change="set_zone(zone)" class="form-control">
-                                                             </select>
+                                                        <div so-multiselect items="zones" name="Zones" on-selected="onSelected('zone', selectedItems)" button-class="btn-grey"></div>
                                                       </div>
                                                                                                         
                                                        

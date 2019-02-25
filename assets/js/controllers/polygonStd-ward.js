@@ -11,9 +11,7 @@
             // $scope.coordinates=[];
 
             
-           
-
-              var init = function() {
+          
                Auth.getlocations(urls.POLYGON_ZONE+'?', function(res) {
                $scope.zones = res;
                  
@@ -22,8 +20,6 @@
                 
             });
                
-            };
-            init();
 
            
 
@@ -159,6 +155,23 @@
     return 'rgb(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s)+')';
             }
 
+function whenClicked(e) {
+  // e = event
+  //console.log(e.target.feature.properties.key)
+  swal('Ward Number: '+e.target.feature.properties.name, '')
+  $scope.id = e.target.feature.properties.key
+  // toaster.pop('success', e.target.feature.properties.name);
+  // You can make your ajax call declaration here
+  //$.ajax(... 
+}
+
+
+function onEachFeature(feature, layer) {
+    //bind click
+    layer.on({
+        click: whenClicked
+    });
+}
 
 
   function style(feature) {
@@ -219,6 +232,7 @@
                       "features": $scope.Feature
                     },
                     style: style,
+                    onEachFeature: onEachFeature
                 },
 
 

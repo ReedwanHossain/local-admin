@@ -11,13 +11,18 @@
         
        
 
-           Auth.getlocations(urls.POLYGON_SUBAREA+'?', function(res) {
-           $scope.subareas = res;
+          $scope.subareas = [{key:1, name: 'Mirpur 2'}];
+          var init = function() {
+            Auth.getlocations(urls.POLYGON_AREA, function(res) {
+           $scope.areas = res;
              
         },
          function() {
             
         });
+           
+        };
+        init();
 
         
 
@@ -138,27 +143,84 @@
                 //create bounds
               }, 500);
             });
-    
 
-
-    $scope.set_subarea = function(subarea) {
+ $scope.set_area = function(area) {
       // console.log(zone);
       // var polyjson = JSON.parse(zone['ST_AsGeoJSON(ward_area)']);
       // console.log(polyjson);
-      $scope.id = subarea['id'];
+      $scope.id = area['id'];
 
-    
-            var coordinates = [];
-            var temp = []
-            var polyjson = JSON.parse(subarea['ST_AsGeoJSON(subarea_area)']);
-              // console.log(polyjson.coordinates);
-             temp.push(polyjson.coordinates);
-            coordinates = temp;
-            console.log(coordinates);
+      Auth.getlocations(urls.SUBAREA_BY_AREA+$scope.id+'?', function(res) {
             
-            //$scope.areas.push({id: -1, name:"all", 'ST_AsGeoJSON(area)': JSON.stringify({'type': "Polygon", 'coordinates': coordinates})});
+            // $scope.subareas = [{key:1, name: 'Mirpur 2'}];
+               $scope.subareas = []
+                $scope.subareas.push({key: -1, name: 'clear', pgon: 'nai'});
+                res.map(function(res) {
+                    var polyjson = res['ST_AsGeoJSON(subarea_area)'];
+                    $scope.subareas.push({key: res.id, name: res.subarea_name, pgon: polyjson})
+                });
+
+                    
+
+            
+        },
+             function() {
+                
+            });
      
-      angular.extend($scope, {
+      
+        // $scope.markers = {};
+    };
+    
+
+
+    $scope.onSelected = function(field, selectedItem) {
+        console.log(selectedItem);
+        if (selectedItem[0].key < 0) {
+           selectedItem.reverse().map(function(area) {
+              area.selected = false;
+           });
+           angular.extend($scope, {
+        
+                geojson : {
+                    data: {
+                      "type": "FeatureCollection",
+                      "features": []
+                    },
+                    // style: style,
+                },
+
+
+            });
+           return 
+        }
+         $scope.Feature =[];
+         var coordinates = [];
+            var temp = [];
+
+        selectedItem.reverse().map(function(road,k) {   
+              var polyjson = JSON.parse(road.pgon);
+              
+              $scope.Feature.push({
+                "type": "Feature",
+                "properties": {
+                  "name": road.name,
+                  "key" : road.key
+                },
+                "geometry": {
+                  "type": "Polygon",
+                  "coordinates": polyjson.coordinates
+                }
+              });
+
+
+
+             temp.push(polyjson.coordinates);
+         });
+         coordinates = temp;
+
+         if (selectedItem.length>0) {
+            angular.extend($scope, {
         center: {
           lat: coordinates[0][0][0][1],
           lng: coordinates[0][0][0][0],
@@ -168,32 +230,69 @@
                 geojson : {
                     data: {
                       "type": "FeatureCollection",
-                      "features": [
-                        {
-                          "type": "Feature",
-                          "properties": {},
-                          "geometry": {
-                            "type": "MultiPolygon",
-                            "coordinates": coordinates
-                          }
-                        }
-                      ]
+                      "features": $scope.Feature
                     },
-                    style: {
-                       
-                            weight: 2,
-                            opacity: 1,
-                            color: 'green',
-                            dashArray: '1',
-                            fillOpacity: 0
-                    }
+                    style: style,
+                    onEachFeature: onEachFeature
                 },
 
 
             });
+         }else{
+             angular.extend($scope, {
+        
+                geojson : {
+                    data: {
+                      "type": "FeatureCollection",
+                      "features": []
+                    },
+                    // style: style,
+                },
 
+
+            });
+         }
     };
 
+
+function getColor() {
+                var o = Math.round, r = Math.random, s = 255;
+    return 'rgb(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s)+')';
+    //return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+
+            }
+
+
+function whenClicked(e) {
+  // e = event
+  console.log(e.target.feature.properties.key)
+  swal(e.target.feature.properties.name, '')
+  $scope.id = e.target.feature.properties.key
+  // toaster.pop('success', e.target.feature.properties.name);
+  // You can make your ajax call declaration here
+  //$.ajax(... 
+}
+
+
+function onEachFeature(feature, layer) {
+    //bind click
+    layer.on({
+        click: whenClicked
+    });
+}
+
+
+
+
+  function style(feature) {
+                return {
+                    fillColor: getColor(),
+                    opacity: 2,
+                    color: getColor(),
+                    dashArray: '3',
+                    fillOpacity: 0.7
+                };
+            }
     
 
 

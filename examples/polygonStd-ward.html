@@ -21,8 +21,7 @@
 
                                                       <div>
                                                   <label class="label"></label>
-                                                         <select ng-model="ward"  name="ward"  ng-options="opt.ward_number for opt in wards" ng-change="set_ward(ward)" class="form-control">
-                                                             </select>
+                                                        <div so-multiselect items="wards" name="ward" on-selected="onSelected('ward', selectedItems)" button-class="btn-grey"></div>
                                                       </div>
                                                       
                                                         <!--  <div>

@@ -11,13 +11,31 @@
         
        
 
-           Auth.getlocations(urls.POLYGON_ZONE, function(res) {
-           $scope.zones = res;
+        //    Auth.getlocations(urls.POLYGON_ZONE, function(res) {
+        //    $scope.zones = res;
              
-        },
+        // },
+        //  function() {
+            
+        // });
+
+           $scope.zones = [{key:1, name: '1'}];
+           Auth.getlocations(urls.POLYGON_ZONE, function(res) {
+
+                    $scope.zones= [];
+                    $scope.zones.push({key: -1, name: 'clear', pgon: 'nai'});
+                    res.map(function(res) {
+                        var polyjson = res['ST_AsGeoJSON(zone_area)'];
+                        $scope.zones.push({key: res.id, name: res.id,  pgon: polyjson})
+                    });
+                    //$scope.areas.push({key: -1, name: 'clear', pgon: 'nai'});
+                    //console.log($scope.subcategories);
+
+                 },
          function() {
             
         });
+
 
         
 
@@ -144,6 +162,23 @@ function getColor() {
 
             }
 
+function whenClicked(e) {
+  // e = event
+ // console.log(e.target.feature.properties.key)
+  swal('Zone: '+e.target.feature.properties.key, '')
+  $scope.id = e.target.feature.properties.key;
+  // toaster.pop('success', e.target.feature.properties.name);
+  // You can make your ajax call declaration here
+  //$.ajax(... 
+}
+
+
+function onEachFeature(feature, layer) {
+    //bind click
+    layer.on({
+        click: whenClicked
+    });
+}
 
 
   function style(feature) {
@@ -158,24 +193,53 @@ function getColor() {
     
 
 
-    $scope.set_zone = function(zone) {
-      // console.log(zone);
-      // var polyjson = JSON.parse(zone['ST_AsGeoJSON(ward_area)']);
-      // console.log(polyjson);
-      $scope.id = zone['id'];
+   $scope.onSelected = function(field, selectedItem) {
+        console.log(selectedItem);
+        if (selectedItem[0].key < 0) {
+           selectedItem.reverse().map(function(area) {
+              area.selected = false;
+           });
+           angular.extend($scope, {
+        
+                geojson : {
+                    data: {
+                      "type": "FeatureCollection",
+                      "features": []
+                    },
+                    // style: style,
+                },
 
-    
-            var coordinates = [];
-            var temp = []
-            var polyjson = JSON.parse(zone['ST_AsGeoJSON(zone_area)']);
-              // console.log(polyjson.coordinates);
+
+            });
+           return 
+        }
+         $scope.Feature =[];
+         var coordinates = [];
+            var temp = [];
+
+        selectedItem.reverse().map(function(road,k) {   
+              var polyjson = JSON.parse(road.pgon);
+              
+              $scope.Feature.push({
+                "type": "Feature",
+                "properties": {
+                 // "name": road.name,
+                  "key" : road.key
+                },
+                "geometry": {
+                  "type": "Polygon",
+                  "coordinates": polyjson.coordinates
+                }
+              });
+
+
+
              temp.push(polyjson.coordinates);
-            coordinates = temp;
-            console.log(coordinates);
-            
-            //$scope.areas.push({id: -1, name:"all", 'ST_AsGeoJSON(area)': JSON.stringify({'type': "Polygon", 'coordinates': coordinates})});
-     
-      angular.extend($scope, {
+         });
+         coordinates = temp;
+
+         if (selectedItem.length>0) {
+            angular.extend($scope, {
         center: {
           lat: coordinates[0][0][0][1],
           lng: coordinates[0][0][0][0],
@@ -185,23 +249,28 @@ function getColor() {
                 geojson : {
                     data: {
                       "type": "FeatureCollection",
-                      "features": [
-                        {
-                          "type": "Feature",
-                          "properties": {},
-                          "geometry": {
-                            "type": "MultiPolygon",
-                            "coordinates": coordinates
-                          }
-                        }
-                      ]
+                      "features": $scope.Feature
                     },
-                    style: style
+                    style: style,
+                    onEachFeature: onEachFeature
                 },
 
 
             });
+         }else{
+             angular.extend($scope, {
+        
+                geojson : {
+                    data: {
+                      "type": "FeatureCollection",
+                      "features": []
+                    },
+                    // style: style,
+                },
 
+
+            });
+         }
     };
 
     
