@@ -67,19 +67,23 @@
 .dropbtn {
     background-color: #4CAF50;
     color: white;
-    padding: 16px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 14px;
     border: none;
     cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 30px;
 }
 
 .dangerbtn {
     background-color: rgb(216, 55, 14);
     color: white;
-    padding: 16px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 14px;
     border: none;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .dropdown {
@@ -105,7 +109,11 @@
 
 .dropdown-content a:hover {background-color: #f1f1f1}
 
-.dropdown:hover .dropdown-content {
+/* .dropdown:hover .dropdown-content {
+    display: block;
+} */
+
+.show-dropdown-content {
     display: block;
 }
 

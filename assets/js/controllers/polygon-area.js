@@ -50,6 +50,11 @@
       function() {}
     );
 
+    $scope.toggleList = function() {
+      var myEl = angular.element( document.querySelector( '.dropdown-content' ) );
+      myEl.toggleClass('show-dropdown-content');
+    }
+
     $scope.selectOption = function(field, selectedItem) {
       // let selectedItem = new Array();
 

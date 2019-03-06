@@ -22,7 +22,7 @@
         <!-- <div so-multiselect items="areas" name="Area" on-selected="onSelected('area', selectedItems)" button-class="btn-grey"></div> -->
 
         <div class="dropdown" style="width: 215px;">
-            <button class="dropbtn">Areas: <strong>{{totalSubtypes}}</strong></button>
+            <button class="dropbtn" ng-click="toggleList()">Areas: <strong>{{totalSubtypes}}</strong></button>
             <button class="dangerbtn" ng-click="selectOption('area', areas[0])" ng-model="selected">Clear All</button>
             <div class="dropdown-content" style="overflow-y: scroll; height: 70vh; padding-left: 10px; padding-top: 20px;">
               <label style="display: block;" ng-repeat="area in areas | orderBy: 'name'" ng-if="area.key > -1">
