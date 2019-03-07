@@ -23,7 +23,8 @@
           <button class="dropbtn" ng-click="toggleList()">Subareas: <strong>{{totalSubtypes}}</strong></button>
           <button class="dangerbtn" ng-click="selectOption('area', subareas[0])" ng-model="selected">Clear All</button>
           <div class="dropdown-content" style="overflow-y: scroll; height: 70vh; padding-left: 10px; padding-top: 20px;">
-            <label style="display: block;" ng-repeat="subarea in subareas | orderBy: 'name'" ng-if="subarea.key > -1">
+            <input type="text" class="form-control search-query" ng-model="dropQuery" ng-change="search()" placeholder="Search">
+            <label style="display: block;" ng-repeat="subarea in subareas | orderBy: 'name' | filter: (dropQuery)" ng-if="subarea.key > -1">
               <input type="checkbox" ng-change="selectOption('subarea', subarea)" ng-model="subarea.selected" style="width: 40px;">
               {{subarea.name}}<br>
             </label>
