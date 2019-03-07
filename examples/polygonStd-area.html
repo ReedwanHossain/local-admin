@@ -25,7 +25,8 @@
             <button class="dropbtn" ng-click="toggleList()">Areas: <strong>{{totalSubtypes}}</strong></button>
             <button class="dangerbtn" ng-click="selectOption('area', areas[0])" ng-model="selected">Clear All</button>
             <div class="dropdown-content" style="overflow-y: scroll; height: 70vh; padding-left: 10px; padding-top: 20px;">
-              <label style="display: block;" ng-repeat="area in areas | orderBy: 'name'" ng-if="area.key > -1">
+              <input type="text" class="form-control search-query" ng-model="dropQuery" ng-change="search()" placeholder="Search">
+              <label style="display: block;" ng-repeat="area in areas | orderBy: 'name' | filter: (dropQuery)" ng-if="area.key > -1">
                 <input type="checkbox" ng-change="selectOption('area', area)" ng-model="area.selected" style="width: 40px;">
                 {{area.name}}<br>
               </label>
