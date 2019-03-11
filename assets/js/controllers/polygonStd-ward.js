@@ -156,13 +156,16 @@
             }
 
 function whenClicked(e) {
-  // e = event
+  // console.log(e)
   //console.log(e.target.feature.properties.key)
   swal('Ward Number: '+e.target.feature.properties.name, '')
   $scope.id = e.target.feature.properties.key
   // toaster.pop('success', e.target.feature.properties.name);
   // You can make your ajax call declaration here
   //$.ajax(... 
+   var center = e.feature.getBounds().getCenter();
+   console.log(center);
+
 }
 
 
@@ -180,7 +183,8 @@ function onEachFeature(feature, layer) {
                     opacity: 2,
                     color: getColor(),
                     dashArray: '3',
-                    fillOpacity: 0.7
+                    fillOpacity: 0.7,
+                    title: "name"
                 };
             }
 
