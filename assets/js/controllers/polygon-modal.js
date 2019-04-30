@@ -23,6 +23,8 @@
 
             });
         };
+
+        $scope.road_number = DataTunnel.get_data().name
         
 
 
@@ -200,6 +202,31 @@
                 },'').replace(/,\s*$/, ""),
                 number_of_lanes: number_of_lanes,
                 avg_speed: speed
+              }
+               console.log(data)
+
+            Auth.updateSomething(urls.POLYLINE_ROAD+'/'+id, data, function(res) {
+                swal("Done", "Polyline updated");
+            },function() {
+                swal("Error")
+            }) 
+       }
+
+       $scope.update_name_polyline = function(road_number, number_of_lanes, speed) {
+        console.log(DataTunnel.get_data())
+              var id = DataTunnel.get_data().id;
+              // var poly = DataTunnel.get_data().poly.toString();
+              //$scope.road_number = DataTunnel.get_data().name
+              var data = {
+                // road_geometry: poly,
+                road_name_number: road_number,
+                // area_id: area.id,
+                // subarea_id : subarea.id,
+                // road_condition: $scope.road_type.reduce(function (accumulator, currentValue) {
+                //     return accumulator + currentValue.name+', ';
+                // },'').replace(/,\s*$/, ""),
+                // number_of_lanes: number_of_lanes,
+                // avg_speed: speed
               }
                console.log(data)
 

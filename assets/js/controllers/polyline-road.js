@@ -173,7 +173,36 @@
                   });
                });
            });
-   
+
+            function onEachFeature(feature, layer) {
+    //bind click
+    layer.on({
+        click: whenClicked
+    });
+}
+
+   function whenClicked(e) {
+  // e = event
+  // console.log(e.target.feature.properties.name)
+  // swal(e.target.feature.properties.name, '')
+  var data = {
+                        id : DataTunnel.get_data().id,
+                        name : e.target.feature.properties.name
+                     }
+                      DataTunnel.set_data(data);
+
+
+                      modalInstance = $modal.open({
+                        //templateUrl: '/local/examples/polyline-road-mod.html',
+                        templateUrl: '/../../examples/polyline-name-up-mod.html',
+                        controller: 'PolygonModal',
+                        size: 'lg',
+                        scope: $scope
+                    });
+  // toaster.pop('success', e.target.feature.properties.name);
+  // You can make your ajax call declaration here
+  //$.ajax(... 
+}
 
 
 function getColor(road) {
@@ -253,7 +282,8 @@ function getColor(road) {
                       "type": "FeatureCollection",
                       "features": $scope.Feature
                     },
-                    style: style
+                    style: style,
+                    onEachFeature: onEachFeature 
                 },
                 selectedRoad : {},
 

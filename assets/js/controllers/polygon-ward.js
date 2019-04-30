@@ -243,6 +243,8 @@
       var coordinates = [];
       var temp = [];
 
+      $scope.id = $scope.selectedItems[$scope.selectedItems.length-1].key;
+
       $scope.selectedItems.reverse().map(function(road, k) {
         var polyjson = JSON.parse(road.pgon);
 
