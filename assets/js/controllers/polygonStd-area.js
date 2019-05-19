@@ -9,7 +9,6 @@
 
     function PolygonStdArea($scope, $modal, $http, $stateParams, $window, $location, $timeout, leafletData, urls, Auth, DataTunnel, bsLoadingOverlayService) {
         // $scope.coordinates=[];
-       var drawnItems;
 
        var drawnItems = new L.FeatureGroup();
 
@@ -23,13 +22,13 @@
             
         });
 
-        //    Auth.getlocations(urls.POLYGON_AREA+'?', function(res) {
-        //    $scope.areas = res;
+           Auth.getlocations(urls.POLYGON_AREA+'?', function(res) {
+           $scope.areas = res;
              
-        // },
-        //  function() {
+        },
+         function() {
             
-        // });
+        });
            
         };
         init();
@@ -209,7 +208,7 @@
                                 urls.POLYGON_AREA + "/" + $scope.id,
                                 data,
                                 function(res) {
-                                    swal("Done", "Polygon updated");
+                                    swal("Done", "Area Polygon updated");
                                 },
                                 function() {
                                     swal("Error");
@@ -357,7 +356,7 @@
             $scope.Feature = []
             var coordinates = [];
             var temp = []
-            var polyjson = JSON.parse(zone['ST_AsGeoJSON(zone_area)']);
+            var polyjson = JSON.parse(zone['ST_AsGeoJSON(area_area)']);
             temp.push(polyjson.coordinates);
             coordinates = temp;
             console.log(polyjson.coordinates)
