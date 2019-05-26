@@ -243,6 +243,8 @@
       var coordinates = [];
       var temp = [];
 
+      $scope.id = $scope.selectedItems[$scope.selectedItems.length-1].key;
+
       $scope.selectedItems.reverse().map(function(road, k) {
         var polyjson = JSON.parse(road.pgon);
 
@@ -378,11 +380,12 @@
     }
 
     function onEachFeature(feature, layer) {
-      //bind click
-      layer.on({
-        click: whenClicked
-      });
-    }
+            //bind click
+            layer.on({
+                load: whenClicked,
+                title: layer.bindPopup('Ward: ' +feature.properties.name),
+            });
+        }
 
     function style(feature) {
       return {
